@@ -65,15 +65,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Champions\Vayne.cs" />
+    <Compile Include="Core\ChampionCore.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Champions\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Vayne.jpg" />
   </ItemGroup>
