@@ -66,14 +66,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Champions\Vayne.cs" />
-    <Compile Include="Core\ChampionCore.cs" />
+    <Compile Include="Cores\AChampionCore.cs" />
+    <Compile Include="Extensions\HeroExtensions.cs" />
+    <Compile Include="Extensions\MinionExtensions.cs" />
+    <Compile Include="Extensions\VectorExtensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Libraries\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Vayne.jpg" />
   </ItemGroup>

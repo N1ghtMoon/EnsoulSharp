@@ -1,18 +1,17 @@
 using System;
+using System.Linq;
 using EnsoulSharp;
 using EnsoulSharp.SDK;
-using EnsoulSharp.SDK.MenuUI;
 using SharpShooter.Champions;
 
 namespace SharpShooter
 {
     internal class Program
     {
+        private static readonly string[] Champions = new[] { "Vayne" };
+
         private static void Main(string[] args)
         {
-            // MAKE SURE USE THIS DELEGATE BEFORE EVERYTHING LOAD FIRST
-            // DONT MAKE ASSEMBLY LOAD FIRST THAN SDK OR SOEMTHING
-            // IT WILL MAKE GAME CRASH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             GameEvent.OnGameLoad += OnGameLoad;
         }
 
@@ -31,27 +30,36 @@ namespace SharpShooter
             //if (!yourAiosupport.Contains(GameObjects.Player.CharacterName)) return;
 
             // in here i wont be add more auth or any check logic in here
-            // if you want to find some sbtw auth system
+            // if you want to find a simple auth system
             // just try to use https://auth.gg/
 
+            string ChampionName = GameObjects.Player.CharacterName;
 
-            // Set Player
-            ChampionCore.Player = GameObjects.Player;
+            // not support
+            if (!Champions.Contains(ChampionName))
+            {
+                return;
+            }
 
-            // Set MainMenu
-            ChampionCore.MainMenu = new Menu(ChampionCore.Player.CharacterName, "[SharpShooter] " + ChampionCore.Player.CharacterName, true).Attach();
+            bool isLoad = true;
 
             // Load champion script
-            switch (ChampionCore.Player.CharacterName)
+            switch (ChampionName)
             {
                 case "Vayne":
                     new Vayne();
                     break;
+                default:
+                    isLoad = false;
+                    break;
             }
 
             // Pring load successful message in game and console
-            Console.WriteLine($"[SharpShooter]: {ChampionCore.Player.CharacterName} Load Successful! Made By NightMoon");
-            Game.Print("<font size='26'><font color='#9999CC'>SharpShooter</font></font> <font color='#FF5640'> Load Successful! Made By NightMoon</font>");
+            if (isLoad)
+            {
+                Console.WriteLine($"[SharpShooter]: {ChampionName} Load Successful! Made By NightMoon");
+                Game.Print("<font size='26'><font color='#9999CC'>SharpShooter</font></font> <font color='#FF5640'> Load Successful! Made By NightMoon</font>");
+            }
         }
     }
 }
